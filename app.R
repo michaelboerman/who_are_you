@@ -14,8 +14,8 @@ server <- function(input, output, session) {
     user_login   <- reactive(session$user)
     login_source <- reactive("from session$user")
   } else {
-    user_login   <- reactive(Sys.getenv('USER'))
-    login_source <- reactive("from 'Sys.getenv('USER')") 
+    user_login   <- reactive(Sys.info()["user"])
+    login_source <- reactive("from Sys.info()['user']") 
   }
 
   output$user_login   <- renderText(paste0("The user's computer name is: ", user_login(), "."))
